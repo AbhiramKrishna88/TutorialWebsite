@@ -118,19 +118,6 @@ exports.deleteAll = (req, res) => {
 // Retrieve all Tutorials from the database.
 exports.findAll = (req, res) => {
   const { page, size, title, category } = req.query;
-  // let condition = ()=>{
-  //     if (cat!=null){
-  //       var obj = {cat: { [Op.like]: `%${cat}%`}};
-  //       console.log(cat);
-  //       return obj;
-  //     }
-  //     else
-  //       console.log("else part")
-  //       return null;
-  //   };
-  
-  // console.log(`cat ${cat}`);
-  // console.log(condition);
 
   // //console.log(`page ${page}; size ${size}; title ${title}; cat ${cat}`);
   // //console.log("queryObject");
