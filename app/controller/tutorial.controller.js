@@ -117,14 +117,27 @@ exports.deleteAll = (req, res) => {
 
 // Retrieve all Tutorials from the database.
 exports.findAll = (req, res) => {
-  const { page, size, title, cat } = req.query;
-  var condition = title ? { title: { [Op.like]: `%${title}%` } } : null;
-  console.log(`page ${page}; size ${size}; title ${title}; cat ${cat}`);
-  console.log("queryObject");
+  const { page, size, title, category } = req.query;
+  // let condition = ()=>{
+  //     if (cat!=null){
+  //       var obj = {cat: { [Op.like]: `%${cat}%`}};
+  //       console.log(cat);
+  //       return obj;
+  //     }
+  //     else
+  //       console.log("else part")
+  //       return null;
+  //   };
+  
+  // console.log(`cat ${cat}`);
+  // console.log(condition);
+
+  // //console.log(`page ${page}; size ${size}; title ${title}; cat ${cat}`);
+  // //console.log("queryObject");
   
   const { limit, offset } = getPagination(page, size);
 
-  Tutorial.findAndCountAll({ where: condition, limit, offset })
+  Tutorial.findAndCountAll({ where: {cat: { [Op.like]: `%${category}%`}}, limit, offset })
     .then(data => {
       const response = getPagingData(data, page, limit);
       res.send(response);
